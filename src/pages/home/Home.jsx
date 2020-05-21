@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useFetch } from "../../services/hooks";
 
-import { useFetch } from "./hooks";
+import Loading from '../../components/loading/Loading';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
-import Loading from './Loading';
 import './Home.css';
 
 import capaIfBq from '../../assets/images/capa_fb_ifbq.png';
@@ -12,13 +15,16 @@ function Home() {
   
   if(loading) {
     return (
-      <Loading />
+      <div className="loading">
+        <Loading />
+      </div>
     )
   } else {  
     let items = data.results ? [...data.results] : [];
-  
+
     return (
       <>
+        <Header />
         <div className="content">
           <section>
             <div>
@@ -47,19 +53,21 @@ function Home() {
             <h1 className="title headline1 align-center">Categorias</h1>
             <ul className="box-categories">
               { items.map(item => (
-                <a href="#" key={item.name}>
-                  <li className="tile-category">
-                    <p className="text">{item.name}</p>
-                  </li>
-                </a>
+                <li key={item.name}>
+                  <Link to="/categorias">
+                    <div className="tile-category">
+                      <p className="text">{item.name}</p>
+                    </div>
+                  </Link>
+                </li>
               ))}
             </ul>
           </section>
         </div>
+        <Footer />
       </>
     ); 
   }
-  
 }
 
-export default Home;
+export default Home
