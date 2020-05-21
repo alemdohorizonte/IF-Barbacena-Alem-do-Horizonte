@@ -1,6 +1,6 @@
 import React from 'react';
 
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/logo_mod.png';
 import ifbq from '../../assets/images/ifbq_mod.png';
 
 import './Header.css'

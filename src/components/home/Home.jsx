@@ -3,12 +3,12 @@ import React from 'react';
 import { useFetch } from "./hooks";
 
 import Loading from './Loading';
-import './Home.css'
+import './Home.css';
 
-function Home() {  
-  const [data, loading] = useFetch(
-    "https://swapi.dev/api/starships/"
-  );
+import capaIfBq from '../../assets/images/capa_fb_ifbq.png';
+
+function Home() {
+  const [data, loading] = useFetch("https://swapi.dev/api/vehicles/");
   
   if(loading) {
     return (
@@ -21,8 +21,9 @@ function Home() {
       <>
         <div className="content">
           <section>
-            <div> 
-              <h1 className="title headline1 align-center">Mostra Virtual de Projetos</h1>
+            <div>
+              <img id="capa" src={capaIfBq} alt="Capa IF Barbacena Alem do Horizonte"/>
+              
               <iframe 
                 width="100%" 
                 height="315" 
@@ -38,7 +39,7 @@ function Home() {
               </iframe>
               
               <p className="headline6 align-center">
-                Essa é a Mostra Virtual de porjeto do IF Barbacena. Conheça os projetos apresentados nos estandes virtuais.
+                Essa é a Mostra Virtual de projetos do IF Barbacena. Conheça os projetos apresentados nos estandes virtuais.
               </p>
             </div>
           </section>
