@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Footer.css'
 
-import Logo from '../../assets/images/logo_if.png';
+import Logo from '../../assets/images/logotipo_if.png';
 
 function Footer() {
   

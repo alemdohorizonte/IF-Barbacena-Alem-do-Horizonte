@@ -1,7 +1,7 @@
 import React from 'react';
 
 import logo from '../../assets/images/logo.png';
-import ifbq from '../../assets/images/ifbq.png';
+import ifbq from '../../assets/images/ifbq_mod.png';
 
 import './Header.css'
 

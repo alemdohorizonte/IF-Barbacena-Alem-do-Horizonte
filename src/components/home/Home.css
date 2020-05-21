@@ -49,7 +49,7 @@ section p {
 .tile-category {
   border-radius: 15px;
   background-color: var(--primary-color);
-  margin: 15px 5px;
+  margin: 10px 5px;
 }
 
 .tile-category p {

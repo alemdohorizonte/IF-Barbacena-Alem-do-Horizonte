@@ -10,7 +10,6 @@ function Home() {
     "https://swapi.dev/api/starships/"
   );
   
-  
   if(loading) {
     return (
       <Loading />
@@ -45,10 +44,10 @@ function Home() {
           </section>
           <section id="categories">
             <h1 className="title headline1 align-center">Categorias</h1>
-            <ul class="box-categories">
+            <ul className="box-categories">
               { items.map(item => (
                 <a href="#" key={item.name}>
-                  <li class="tile-category">
+                  <li className="tile-category">
                     <p className="text">{item.name}</p>
                   </li>
                 </a>
@@ -59,6 +58,7 @@ function Home() {
       </>
     ); 
   }
+  
 }
 
 export default Home;

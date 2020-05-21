@@ -102,11 +102,11 @@ header.header {
 
 #logo {
   width: 200px;
-  height: 12vh;
+  height: 11vh;
 }
 
 #ifbq {
-  margin-right: -50px;
-  width: 170px;
-  height: 16.5vh;
+  margin-left: 50px;
+  width: 60px;
+  height: 11vh;
 }
