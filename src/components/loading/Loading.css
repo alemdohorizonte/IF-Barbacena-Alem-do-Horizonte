@@ -76,19 +76,6 @@
   background-color: var(--accent-color);
   border: 1px solid white;
   border-radius:10%;
-  animation-name:bounce;
-  animation-duration:3s;
-  animation-timing-function:cubic-bezier(0.54, 0.14, 0.47, 1.05);
-  animation-direction:normal;
-  animation-iteration-count:infinite
-}
-
-#circ1{
-  animation-name:circ;
-  animation-duration:3s;
-  animation-timing-function:cubic-bezier(0.54, 0.14, 0.47, 1.05);
-  animation-direction:normal;
-  animation-iteration-count:infinite
 }
 
 @keyframes bounce{
@@ -126,7 +113,7 @@
   margin-left:12%;
   margin-top:-130%;
   animation-name:borda;
-  animation-duration:2s;
+  animation-duration:0.8s;
   animation-timing-function:linear;
   animation-direction:normal;
   animation-iteration-count:infinite

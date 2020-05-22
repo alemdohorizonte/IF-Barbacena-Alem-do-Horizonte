@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 
-function useFetch(url) {
+import file from '../data/data.json';
+
+function useFetch() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  //file.map(item => console.log(item));
   
   async function fetchUrl() {
-    await fetch(url)
-      .then(res => res.json())
-      .then(json => {
-        setData(json);
-        setLoading(false);
-      });
+    await setData(file);
+    setLoading(false);
   }
-
+  
   useEffect(() => {
     fetchUrl();
   }, []);

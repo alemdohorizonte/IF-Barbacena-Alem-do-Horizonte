@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useFetch } from "../../services/hooks";
+import { useFetch } from '../../services/Hooks';
 
 import Loading from '../../components/loading/Loading';
 import Header from '../../components/header/Header';
@@ -10,9 +10,11 @@ import './Home.css';
 
 import capaIfBq from '../../assets/images/capa_fb_ifbq.png';
 
+import file from '../../data/data.json';
+
 function Home() {
-  const [data, loading] = useFetch("https://swapi.dev/api/vehicles/");
-  
+  const [data, loading] = useFetch(file);
+
   if(loading) {
     return (
       <div className="loading">
@@ -20,8 +22,23 @@ function Home() {
       </div>
     )
   } else {  
-    let items = data.results ? [...data.results] : [];
+    let items = data ? data : [];
 
+    let distinct = (value, index, self) => self.indexOf(value) === index; 
+
+    let categories = data
+      .map((item)=>item["Categoria de Trabalho"])
+      .map(item=> item.includes('(') ? item.substr(0, item.indexOf('(')).trim() : item)
+      
+    data.map((item, index) => {
+      item['indice'] = index;
+      return item['categoria'] = categories[index];
+    });  
+    
+    categories = categories.filter(distinct);
+    localStorage.setItem('data', JSON.stringify(items));
+    
+    //categories
     return (
       <>
         <Header />
@@ -45,18 +62,21 @@ function Home() {
               </iframe>
               
               <p className="headline6 align-center">
-                Essa é a Mostra Virtual de projetos do IF Barbacena. Conheça os projetos apresentados nos estandes virtuais.
+                Essa é a Mostra Virtual de trabalhos do IF Barbacena. Conheça os trabalhos apresentados nos estandes virtuais.
               </p>
             </div>
           </section>
           <section id="categories">
             <h1 className="title headline1 align-center">Categorias</h1>
             <ul className="box-categories">
-              { items.map(item => (
-                <li key={item.name}>
-                  <Link to="/categorias">
+              { categories.map(category => (
+                <li key={category}>
+                  <Link to={{
+                    pathname: `/categoria/${category}`,
+                    filteredData: {categories: categories, selectedCategory: category, filteredItems: data.filter(item => item['category'] === category)},
+                  }}>
                     <div className="tile-category">
-                      <p className="text">{item.name}</p>
+                      <p className="text">{category}</p>
                     </div>
                   </Link>
                 </li>
