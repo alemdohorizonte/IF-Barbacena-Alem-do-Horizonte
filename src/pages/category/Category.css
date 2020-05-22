@@ -1,6 +1,9 @@
 .content .list li {
   border-top: 1px solid white;
   padding: 10px 15px;
+  word-wrap: break-word;
+  text-align: justify;
+  
 }
 
 .content .list li::selection {

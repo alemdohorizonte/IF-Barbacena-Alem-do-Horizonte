@@ -11,21 +11,24 @@ function Category(props) {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState('');
-
+  
   useEffect(() => {
     let storage = JSON.parse(localStorage.getItem('data'));
-    let param = window.location.href.substr(window.location.href.lastIndexOf('/')+1);
+    let param = decodeURI(window.location.href.substr(window.location.href.lastIndexOf('/')+1));
 
-    setCategory(param);
-
-    if(storage == null) return;
-    
-    let filteredData = storage.filter(item => item.categoria === param);
-    setData({data: filteredData});
-
-    setInterval(() => {
+    if(storage !== null) {
+      setCategory(param);
+      
+      let filteredData = storage.filter(item => item.categoria === param);
+      setData({data: filteredData});
+  
+      setInterval(() => {
+        setLoading(false);
+      }, 1000)
+    } else {
+      setData(null);
       setLoading(false);
-    }, 1000)
+    }
   }, []);
   
   if(loading) {
@@ -33,9 +36,11 @@ function Category(props) {
       <Loading />
     );
   } else {
-    let items = [...data.data] || [];
+    if(data === null) return (<Redirect to="/home" />)
     
+    let items = [...data.data] || [];
     if(items.length === 0) return (<Redirect to="/home" />)
+    
 
     return (
       <>

@@ -30,13 +30,15 @@ function Home() {
       .map((item)=>item["Categoria de Trabalho"])
       .map(item=> item.includes('(') ? item.substr(0, item.indexOf('(')).trim() : item)
       
-    data.map((item, index) => {
+    items.map((item, index) => {
       item['indice'] = index;
       return item['categoria'] = categories[index];
     });  
     
     categories = categories.filter(distinct);
+
     localStorage.setItem('data', JSON.stringify(items));
+    localStorage.setItem('categories', JSON.stringify(categories));
     
     //categories
     return (
