@@ -21,7 +21,7 @@ function Home() {
     localStorage.setItem('selectedCategory', category);
     window.location.href += `categoria/${category}`;
   }
-
+  
   if(loading) {
     return (
       <div className="loading">

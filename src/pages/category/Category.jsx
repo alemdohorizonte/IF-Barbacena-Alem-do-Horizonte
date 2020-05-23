@@ -67,7 +67,7 @@ function Category() {
         <div className="content">
           <div className="title-category">
             <h1 className="title">{category}</h1>
-            <Link to="/">Voltar</Link>
+            <Link to="/">Início <i class="fa fa-home" aria-hidden="true"></i></Link>
           </div>
           <ul className="list">
             {items.map((item, index) => (

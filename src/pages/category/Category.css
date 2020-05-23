@@ -1,6 +1,6 @@
 .content .list li {
   border-top: 1px solid white;
-  padding: 10px 15px;
+  padding: 20px 15px;
   word-wrap: break-word;
   text-align: justify;
 }
@@ -47,7 +47,7 @@
 
 .list-categories .categories {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
+  grid-template-columns: repeat(3, 30%);
 }
 
 .list-categories a {
