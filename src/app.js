@@ -12,7 +12,6 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={()=>Home()} />
-            <Route path="/home" component={()=>Home()} />
             <Route path="/categoria/:categoria" component={()=><Category />} />
             <Route path="/404" component={NotFound} />
             <Redirect to="/404" />

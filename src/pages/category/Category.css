@@ -3,9 +3,59 @@
   padding: 10px 15px;
   word-wrap: break-word;
   text-align: justify;
-  
 }
 
 .content .list li::selection {
   text-decoration: underline;
 }
+
+.content .list {
+  /* Scroll list */
+  max-height: 350px;
+  overflow: scroll;
+}
+
+.title-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.title-category h1 {
+  margin: 0;
+  padding: 10px 15px;
+}
+
+.title-category a {
+  padding: 10px 15px;
+  border-radius: var(--border-radius-card);
+  vertical-align: center;
+  color: var(--accent-color);
+  text-decoration: none;
+  background-color: var(--primary-color);
+  margin-right: 20px;
+}
+
+.list-categories {
+  border-top: 1px solid white;
+}
+
+.list-categories .title {
+  margin: 20px;
+}
+
+.list-categories .categories {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+}
+
+.list-categories a {
+  text-decoration: none;
+  margin: 10px 0; 
+}
+
+.list-categories a .category p {
+  margin: 0 20px;
+}
+

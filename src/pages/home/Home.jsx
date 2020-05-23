@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useFetch } from '../../services/Hooks';
+import { useFetch, processData } from '../../services/Utils';
 
 import Loading from '../../components/loading/Loading';
 import Header from '../../components/header/Header';
@@ -14,6 +14,13 @@ import file from '../../data/data.json';
 
 function Home() {
   const [data, loading] = useFetch(file);
+  const [items, categories] = processData(data);
+
+  async function handleSelectCategory(category) {
+    await localStorage.setItem('filteredItems', JSON.stringify(items.filter(item => item['category'] === category)));
+    localStorage.setItem('selectedCategory', category);
+    window.location.href += `categoria/${category}`;
+  }
 
   if(loading) {
     return (
@@ -22,22 +29,7 @@ function Home() {
       </div>
     )
   } else {  
-    let items = data ? data : [];
 
-    let distinct = (value, index, self) => self.indexOf(value) === index; 
-
-    let categories = data
-      .map((item)=>item["Categoria de Trabalho"])
-      .map(item=> item.includes('(') ? item.substr(0, item.indexOf('(')).trim() : item)
-      
-    items.map((item, index) => {
-      item['indice'] = index;
-      return item['categoria'] = categories[index];
-    });  
-    
-    categories = categories.filter(distinct);
-
-    localStorage.setItem('data', JSON.stringify(items));
     localStorage.setItem('categories', JSON.stringify(categories));
     
     //categories
@@ -75,8 +67,7 @@ function Home() {
                 <li key={category}>
                   <Link to={{
                     pathname: `/categoria/${category}`,
-                    filteredData: {categories: categories, selectedCategory: category, filteredItems: data.filter(item => item['category'] === category)},
-                  }}>
+                  }} onClick={(e) => { e.preventDefault(); handleSelectCategory(category); }}>
                     <div className="tile-category">
                       <p className="text">{category}</p>
                     </div>

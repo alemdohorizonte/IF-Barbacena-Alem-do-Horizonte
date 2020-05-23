@@ -1,8 +1,4 @@
-/*
-@import url("./components/header/Header.css");
-@import url("./components/home/Home.css");
-@import url("./components/home/Loading.css");
-*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 :root {
   --accent-color: #303030;
@@ -15,7 +11,7 @@
   --bg-destaque: rgba(25,136,44,1);
   --bg-header: rgba(0,0,0,0.1);
   --height-header: 17vh;
-
+  --border-radius-card: 10px;
 }
 
 * {
@@ -23,6 +19,7 @@
   padding: 0;
   list-style: none;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
