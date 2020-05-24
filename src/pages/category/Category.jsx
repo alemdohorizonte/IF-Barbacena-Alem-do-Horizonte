@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect, Link } from 'react-router-dom';
+
+import { useFetch, processData } from '../../services/Utils';
 
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import Loading from '../../components/loading/Loading';
-import { Redirect, Link } from 'react-router-dom';
 
 import './Category.css'
 
 import file from '../../data/data.json';
-import { useFetch, processData } from '../../services/Utils';
 
 function Category() {
   const [filteredData, setFilteredData] = useState({});
@@ -16,6 +17,7 @@ function Category() {
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
   const [data] = useFetch(file);
+  const [search, setSearch] = useState('');
   
   useEffect(() => {
     let storage = JSON.parse(localStorage.getItem('filteredItems'));
@@ -43,42 +45,104 @@ function Category() {
     }
   }, []);
 
+  useEffect(() => {
+    if(search.length > 0) {
+      setFilteredData(JSON.parse(localStorage.getItem('filteredItems'))
+        .filter(item => item['Título do Projeto'].toLowerCase().includes(search.toLowerCase())));
+    } else {
+      setFilteredData(JSON.parse(localStorage.getItem('filteredItems')));
+    }
+  }, [search]);
+
   async function handleSelectCategory(category) {
     const [items] = processData(data);
+
     localStorage.setItem('selectedCategory', category);
-    await localStorage.setItem('filteredItems', JSON.stringify(items.filter(item => item['category'] === category)));
+
+    let filteredItems = items
+      .filter(item => item['category'] === category)
+      .map((item, index) => {item['index_category'] = index; return item })
+    await localStorage.setItem('filteredItems', JSON.stringify(filteredItems));
     window.location.href = `${window.location.origin}/categoria/${category}`;
   }
+
+  function handleSearch(e) {
+    let max_char = 200;
+    if(e.target.value.length > max_char) 
+      e.target.value = e.target.value.substr(0, max_char);
+
+    setSearch(e.target.value);
+  }
+
   
   if(loading) {
     return (
       <Loading />
-    );
-  } else {
+      );
+    } else {
+    
     if(filteredData === null) return (<Redirect to="/" />)
     
-    let items = filteredData;
-    if(items.length === 0) return (<Redirect to="/" />)
-    
+    let list;
 
+    if(filteredData.length > 0) {
+      list = (<ul className="list">
+        {filteredData.map((item, index) => (
+          <li key={item.indice}>
+            <p>{item.category}({item.index_category+1}) - {item['Título do Projeto']}</p>
+          </li>
+        ))}
+      </ul>);
+    } else {
+      list = (<ul className="list">
+        <li>
+          <p>Não há resultados com "{search}"</p>
+        </li>
+      </ul>)
+    }
+    
     return (
       <>
         <Header />
+
+        {/*
+          Título da categoria e botão Home
+        */}
         <div className="content">
-          <div className="title-category">
+          <section className="title-category">
             <h1 className="title">{category}</h1>
             <Link to="/">Início <i className="fa fa-home" aria-hidden="true"></i></Link>
-          </div>
+          </section>
+
+          {/* Barra de busca por título do trabalho */}
+          <section className="box-search">
+            <input 
+              type="search" 
+              className="search-bar" 
+              placeholder="Título do trabalho" 
+              name="search-bar" 
+              id="search" 
+              onChange={handleSearch} 
+              autoComplete="off"
+            />
+          </section>
+
+          {/* lista de trabalhos de uma categoria */}
+          {/*
           <ul className="list">
-            {items.map((item, index) => (
+            {filteredData.map((item, index) => (
               <li key={item.indice}>
-                <p>{item.category}({index+1}) - {item['Título do Projeto']}</p>
+                <p>{item.category}({item.index_category+1}) - {item['Título do Projeto']}</p>
               </li>
             ))}
           </ul>
+            */}
+          {list}
 
-          <div className="list-categories">
+          {/* Listagem de categorias */}
+          <section className="list-categories">
             <h1 className="title">Categorias</h1>
+
             <div className="categories">
               {categories.map(item => (
                 <Link key={item} to={{
@@ -90,7 +154,7 @@ function Category() {
                 </Link>
               ))}
             </div>
-          </div>
+          </section>
         </div>
         <Footer />
       </>

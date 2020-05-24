@@ -17,7 +17,10 @@ function Home() {
   const [items, categories] = processData(data);
 
   async function handleSelectCategory(category) {
-    await localStorage.setItem('filteredItems', JSON.stringify(items.filter(item => item['category'] === category)));
+    let filteredItems = items
+      .filter(item => item['category'] === category)
+      .map((item, index) => {item['index_category'] = index; return item })
+    await localStorage.setItem('filteredItems', JSON.stringify(filteredItems));
     localStorage.setItem('selectedCategory', category);
     window.location.href += `categoria/${category}`;
   }
