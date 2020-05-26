@@ -48,7 +48,7 @@ function Category() {
   useEffect(() => {
     if(search.length > 0) {
       setFilteredData(JSON.parse(localStorage.getItem('filteredItems'))
-        .filter(item => item['Título do Projeto'].toLowerCase().includes(search.toLowerCase())));
+        .filter(item => `(${item.index_category+1}) ${item['Título do Projeto'].toLowerCase()}`.includes(search.toLowerCase())));
     } else {
       setFilteredData(JSON.parse(localStorage.getItem('filteredItems')));
     }
@@ -74,29 +74,30 @@ function Category() {
     setSearch(e.target.value);
   }
 
-  
   if(loading) {
     return (
       <Loading />
       );
-    } else {
-    
+  } else {
+  
     if(filteredData === null) return (<Redirect to="/" />)
     
     let list;
 
     if(filteredData.length > 0) {
       list = (<ul className="list">
-        {filteredData.map((item, index) => (
+        {filteredData.map((item) => (
           <li key={item.indice}>
-            <p>{item.category}({item.index_category+1}) - {item['Título do Projeto']}</p>
+            <Link to={{ pathname: `/categoria/${item.category}/${item.index_category+1}` }}>
+              <p>{item.category}({item.index_category+1}) - {item['Título do Projeto']}</p>
+            </Link>
           </li>
         ))}
       </ul>);
     } else {
       list = (<ul className="list">
         <li>
-          <p>Não há resultados com "{search}"</p>
+          <p>Não há resultados com "{search}".</p>
         </li>
       </ul>)
     }
@@ -111,7 +112,7 @@ function Category() {
         <div className="content">
           <section className="title-category">
             <h1 className="title">{category}</h1>
-            <Link to="/">Início <i className="fa fa-home" aria-hidden="true"></i></Link>
+            <Link to={{ pathname: "/" }} className="btn-back">Início <i className="fa fa-home" aria-hidden="true"></i></Link>
           </section>
 
           {/* Barra de busca por título do trabalho */}
@@ -128,15 +129,6 @@ function Category() {
           </section>
 
           {/* lista de trabalhos de uma categoria */}
-          {/*
-          <ul className="list">
-            {filteredData.map((item, index) => (
-              <li key={item.indice}>
-                <p>{item.category}({item.index_category+1}) - {item['Título do Projeto']}</p>
-              </li>
-            ))}
-          </ul>
-            */}
           {list}
 
           {/* Listagem de categorias */}

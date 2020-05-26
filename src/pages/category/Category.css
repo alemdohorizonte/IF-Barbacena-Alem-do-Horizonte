@@ -28,7 +28,7 @@
   padding: 10px 15px;
 }
 
-.title-category a {
+.title-category .btn-back {
   padding: 10px 15px;
   border-radius: var(--border-radius-card);
   vertical-align: center;
@@ -37,9 +37,10 @@
   background-color: var(--primary-color);
   margin-right: 20px;
   min-width: 92px;
+  font-weight: bold;
 }
 
-.title-category a i {
+.title-category .btn-back i {
   font-size: 1.3em;
 }
 
@@ -54,6 +55,19 @@
   padding: 10px 5px;
   border-radius: var(--border-radius-card);
   outline-color: var(--primary-color);
+}
+
+.list li a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.list li a:hover {
+  text-decoration: underline;
+}
+
+.list li a:visited {
+  text-decoration: var(--accent-color);
 }
 
 .list-categories {

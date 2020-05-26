@@ -13,6 +13,8 @@
   --bg-header: rgba(0,0,0,0.1);
   --height-header: 17vh;
   --border-radius-card: 10px;
+  --border-radius: 10px;
+  --margin-card: 15px;
 }
 
 * {
@@ -24,13 +26,6 @@
 }
 
 body {
-  /*
-  background: linear-gradient(
-    rgba(255,255,255,1) 0%, 
-    rgba(25,136,44,1) 65%, 
-    rgba(10,85,23,1) 100%
-  );
-  */
   background-color: var(--bg-color);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #fff;

@@ -1,9 +1,9 @@
 .content {
-  margin: 15px;
+  margin: var(--margin-card);
   min-height: 250px;
   min-width: 260px;
   background-color: var(--bg-color-section);
-  border-radius: 10px;
+  border-radius: var(--border-radius);;
   padding: 15px 0;
 }
 
