@@ -43,11 +43,10 @@ function Home() {
           <section>
             <div>
               <img id="capa" src={capaIfBq} alt="Capa IF Barbacena Alem do Horizonte"/>
-              
               <iframe 
+                src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcampusbarbacena%2Fvideos%2F4251033948241782%2F&show_text=0&height=560" 
                 width="100%" 
-                height="315" 
-                src="https://www.youtube.com/embed/LBC_IiRzDlE" 
+                height="350px"
                 frameBorder="0" 
                 allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
                 title="video"
@@ -55,7 +54,7 @@ function Home() {
                 mozallowfullscreen="mozallowfullscreen" 
                 msallowfullscreen="msallowfullscreen" 
                 oallowfullscreen="oallowfullscreen" 
-                webkitallowfullscreen="webkitallowfullscreen"> 
+                webkitallowfullscreen="webkitallowfullscreen">
               </iframe>
               
               <p className="headline6 align-center">
