@@ -4,7 +4,6 @@ import { useFetch, processData } from '../../services/Utils';
 
 import Loading from '../../components/loading/Loading';
 import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
 
 import './Home.css';
 
@@ -44,9 +43,8 @@ function Home() {
             <div>
               <img id="capa" src={capaIfBq} alt="Capa IF Barbacena Alem do Horizonte"/>
               <iframe 
-                src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcampusbarbacena%2Fvideos%2F4251033948241782%2F&show_text=0&height=560" 
-                width="100%" 
-                height="350px"
+                src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcampusbarbacena%2Fvideos%2F4251033948241782%2F&show_text=0" 
+                width="100%"
                 frameBorder="0" 
                 allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
                 title="video"
@@ -79,7 +77,6 @@ function Home() {
             </ul>
           </section>
         </div>
-        <Footer />
       </>
     ); 
   }

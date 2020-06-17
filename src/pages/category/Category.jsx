@@ -4,7 +4,6 @@ import { Redirect, Link } from 'react-router-dom';
 import { useFetch, processData } from '../../services/Utils';
 
 import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
 import Loading from '../../components/loading/Loading';
 
 import './Category.css'
@@ -74,6 +73,10 @@ function Category() {
     setSearch(e.target.value);
   }
 
+  function foundWorks(numberWorks) {
+    return (numberWorks === 1) ? 'trabalho encontrado.' : 'trabalhos encontrados.';
+  }
+
   if(loading) {
     return (
       <Loading />
@@ -87,11 +90,11 @@ function Category() {
     if(filteredData.length > 0) {
       list = (<ul className="list">
         {filteredData.map((item) => (
-          <li key={item.indice}>
-            <Link to={{ pathname: `/categoria/${item.category}/${item.index_category+1}` }}>
+          <Link key={item.indice} className="bounceIn" to={{ pathname: `/categoria/${item.category}/${item.index_category+1}` }}>
+            <li>
               <p>{item.category}({item.index_category+1}) - {item['Título do Projeto']}</p>
-            </Link>
-          </li>
+            </li>
+          </Link>
         ))}
       </ul>);
     } else {
@@ -114,7 +117,7 @@ function Category() {
             <h1 className="title">{category}</h1>
             <Link to={{ pathname: "/" }} className="btn-back">Início <i className="fa fa-home" aria-hidden="true"></i></Link>
           </section>
-
+          <p>{filteredData.length} {foundWorks(filteredData.length)}</p>
           {/* Barra de busca por título do trabalho */}
           <section className="box-search">
             <input 
@@ -132,23 +135,23 @@ function Category() {
           {list}
 
           {/* Listagem de categorias */}
-          <section className="list-categories">
-            <h1 className="title">Categorias</h1>
-
-            <div className="categories">
-              {categories.map(item => (
-                <Link key={item} to={{
-                  pathname: `/categoria/${item}`,
-                }} onClick={(e) => { e.preventDefault(); handleSelectCategory(item); }}>
-                  <div className="category">
-                    <p className="text">{item}</p>
-                  </div>
-                </Link>
+          <section id="categories">
+            <h1 className="title headline1 align-center">Categorias</h1>
+            <ul className="box-categories">
+              { categories.map(category => (
+                <li key={category}>
+                  <Link to={{
+                    pathname: `/categoria/${category}`,
+                  }} onClick={(e) => { e.preventDefault(); handleSelectCategory(category); }}>
+                    <div className="tile-category">
+                      <p className="text">{category}</p>
+                    </div>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </section>
         </div>
-        <Footer />
       </>
     );
   }

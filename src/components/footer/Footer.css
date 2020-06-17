@@ -34,3 +34,11 @@
   width: 150px;
   height: 210px;
 }
+
+@media (min-width: 720px) {
+  .footer {
+    max-width: 1080px;
+    width: 100%;
+    float: left;
+  }
+}

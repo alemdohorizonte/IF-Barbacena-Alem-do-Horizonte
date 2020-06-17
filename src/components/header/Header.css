@@ -87,7 +87,7 @@ li.destaque a:hover {
 }
 */
 
-header.header {
+.header {
   width: 100%;
   height: var(--height-header);
   background-color: var(--primary-color);
@@ -102,11 +102,35 @@ header.header {
 
 #logo {
   width: 200px;
-  height: 10vh;
+  height: 80%;
+}
+
+.logo-if {
+  height: 60%;
 }
 
 #ifbq {
   margin-left: 50px;
   width: 50px;
-  height: 10vh;
+  height: 100%;
+}
+
+@media (min-width: 720px) { 
+  .header {
+    position: relative;
+    height: 120px;
+  }
+
+  #logo {
+    width: 250px;
+  }
+
+  #ifbq {
+    width: 85px;
+    height: 100%;
+  }
+
+  .logo-if {
+    height: 80%;
+  }
 }

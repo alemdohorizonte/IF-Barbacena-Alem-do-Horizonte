@@ -13,7 +13,9 @@ function header() {
         <Link to="/">
           <img id="logo" alt="Logo IF Barbacena Além do Horizonte" src={logo} />
         </Link>
-        <img id="ifbq" alt="Logo IF Barbacena Além do Horizonte" src={ifbq} />
+        <a target="_blank" className="logo-if" rel="noopener noreferrer" href="https://www.ifsudestemg.edu.br/barbacena">
+          <img id="ifbq" alt="Logo IF Barbacena Além do Horizonte" src={ifbq} />
+        </a>
       </div>
     </header>
   );
