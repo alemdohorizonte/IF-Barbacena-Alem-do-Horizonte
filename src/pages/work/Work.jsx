@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
 import Loading from '../../components/loading/Loading';
 
 import './Work.css';
@@ -85,20 +84,21 @@ function Work() {
           </section>
 
           <section className="summary">
-            <h2 className="title">Resumo</h2>
+            <h2 className="title">Resumo do trabalho</h2>
             <a className="btn" href={work['Arquivo do Banner em PDF']} target="_blank" rel="noopener noreferrer">
-              Resumo em PDF
+              Resumo em PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
             </a>
             <p className="summary-text">
               {work['Resumo'] || 'Nenhum.'}
             </p>
           </section>
-      
-          <Link to={{ pathname: `${decodeURI(window.location.pathname.substr(0, window.location.pathname.lastIndexOf("/")))}` }} className="btn btn-back">
-            <i className="fa fa-arrow-left" aria-hidden="true"></i> Voltar para {decodeURI(window.location.pathname.split('/')[2])}
-          </Link>
+          
+          <section className="box-btn-back">
+            <Link to={{ pathname: `${decodeURI(window.location.pathname.substr(0, window.location.pathname.lastIndexOf("/")))}` }} className="btn btn-back">
+              <i className="fa fa-arrow-left" aria-hidden="true"></i> Voltar para {decodeURI(window.location.pathname.split('/')[2])}
+            </Link>
+          </section>
         </div>
-        <Footer />
       </>
     );
   }
