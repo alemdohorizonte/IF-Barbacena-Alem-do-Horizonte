@@ -21,7 +21,7 @@
   padding: 10px 15px;
 }
 
-.title-category .btn-back {
+.title-category .btn-home {
   padding: 10px 15px;
   border-radius: var(--border-radius-card);
   vertical-align: center;
@@ -33,7 +33,7 @@
   font-weight: bold;
 }
 
-.title-category .btn-back i {
+.title-category .btn-home i {
   font-size: 1.3em;
 }
 

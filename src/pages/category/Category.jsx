@@ -115,7 +115,7 @@ function Category() {
         <div className="content">
           <section className="title-category">
             <h1 className="title">{category}</h1>
-            <Link to={{ pathname: "/" }} className="btn-back">Início <i className="fa fa-home" aria-hidden="true"></i></Link>
+            <Link to={{ pathname: "/" }} className="btn-home">Início <i className="fa fa-home" aria-hidden="true"></i></Link>
           </section>
           <p>{filteredData.length} {foundWorks(filteredData.length)}</p>
           {/* Barra de busca por título do trabalho */}
