@@ -3,8 +3,12 @@ const parser = require('papaparse');
 const path = require('path');
 const fs = require('fs').promises;
 const project = require('./project');
+const cors = require('cors');
+
 
 const app = express();
+
+app.use(cors());
 
 let projects = [];
 let categories = [];
