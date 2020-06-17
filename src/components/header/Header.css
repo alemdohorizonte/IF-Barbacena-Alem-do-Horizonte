@@ -89,6 +89,7 @@ li.destaque a:hover {
 
 .header {
   width: 100%;
+  min-width: 320px;
   height: var(--height-header);
   background-color: var(--primary-color);
 }

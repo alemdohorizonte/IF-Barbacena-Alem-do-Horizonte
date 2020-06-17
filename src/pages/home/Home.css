@@ -1,7 +1,7 @@
 .content {
   margin: var(--margin-card);
   min-height: 250px;
-  min-width: 260px;
+  min-width: 296px;
   background-color: var(--bg-color-section);
   border-radius: var(--border-radius);;
   padding: 15px 0;
@@ -99,7 +99,6 @@ section p {
   #capa{
     height: 500px;
     margin-bottom: 30px;
-    border-bottom: 0.5px solid;
   }
 
   .box-categories {
