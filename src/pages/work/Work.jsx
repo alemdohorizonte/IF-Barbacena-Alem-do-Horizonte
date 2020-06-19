@@ -54,7 +54,7 @@ function Work() {
       //'Orientadores: ', 
       {id: 2, key: 'Instituição', value: work['institution']}, 
       {id: 3, key: 'Categoria do Trabalho', value: work['category']},
-      {id: 4, key: 'Modalidade: ', value: work['modality']}
+      {id: 4, key: 'Modalidade', value: work['modality']}
     ];
     /*
     let youtube = `https://www.youtube.com/embed/${work['Link do vídeo do youtube'].includes('watch') ? 

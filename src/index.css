@@ -31,3 +31,8 @@ body {
   color: #fff;
   min-height: 100vh;
 }
+
+*::selection {
+  background-color: var(--bg-color-section);
+  color: var(--color-text);
+}
