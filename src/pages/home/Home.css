@@ -21,9 +21,11 @@
 
 .box-video {
   position: relative;
-  padding-bottom: 56.25%;
+  padding-bottom: 58.25%;
   height: 0;
   overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 iframe {
@@ -108,7 +110,7 @@ section p {
   }
 
   #capa{
-    height: 700px;
+    height: 70vh;
     margin-bottom: 30px;
   }
 
@@ -142,6 +144,12 @@ section p {
 @media (min-width: 1280px) {
   .box-video {
     max-height: 660px;
+  }
+}
+
+@media (min-width: 1400px) {
+  #capa {
+    height: 60vh;
   }
 }
 
