@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 import Header from '../../components/header/Header';
 import Loading from '../../components/loading/Loading';
+import api from '../../services/Api';
 
 import './Work.css';
 
@@ -11,18 +12,23 @@ function Work() {
   const [work, setWork] = useState({});
   
   useEffect(() => {
-    let index_category = parseInt(window.location.pathname.substr(window.location.pathname.lastIndexOf('/')+1));
-    let items = JSON.parse(localStorage.getItem('filteredItems'));
+    loadProject();
+  }, []);
 
-    let item = items.filter(work => (work.index_category+1) === index_category)[0];
+  async function loadProject() {
+    let id = parseInt(window.location.pathname.substr(window.location.pathname.lastIndexOf('/')+1));
 
-    setWork(item);
-    
+    let response = await api.get(`/project/${id-1}`);
+    let project = response.data;
+
+    setWork(project);
+
     setInterval(() => {
       setLoading(false);
     }, 1000);
-  }, []);
+  }
 
+  /*
   function selectThematicArea(work) {
     switch(work['category']) {
       case "Pesquisa": return work['Áreas Temáticas de Pesquisa'];
@@ -31,6 +37,7 @@ function Work() {
       default: return "Não informado.";
     }
   }
+  */
 
   if(loading) {
     return (
@@ -38,35 +45,50 @@ function Work() {
     );
   } else {
     if(!work) return (<Redirect to="/404" />);
-    if(decodeURI(window.location.pathname.split('/')[2]) !== work['category']) return (<Redirect to="/" />);
+    if(decodeURI(window.location.pathname.split('/')[2]) !== work['category'].split(' ').join('')) return (<Redirect to="/404" />);
+    //console.log(decodeURI(window.location.pathname.split('/')[2]) + ' - ' + work['category'].split(' ').join(''));
 
-    let participants = ['Autores', 'Orientadores', 'Instituição', 'Categoria de Trabalho'];
+    let data = [
+      {id: 0, key: 'Código', value: `#${work['id']+1}`}, 
+      {id: 1, key: 'Autores', value: work['authors']}, 
+      //'Orientadores: ', 
+      {id: 2, key: 'Instituição', value: work['institution']}, 
+      {id: 3, key: 'Categoria do Trabalho', value: work['category']},
+      {id: 4, key: 'Modalidade: ', value: work['modality']}
+    ];
+    /*
     let youtube = `https://www.youtube.com/embed/${work['Link do vídeo do youtube'].includes('watch') ? 
       work['Link do vídeo do youtube'].split("watch?v=")[1] : 
       work['Link do vídeo do youtube'].split('/')[3]}`;
-
-    let thematicArea = selectThematicArea(work);
+    */
+    //let thematicArea = selectThematicArea(work);
 
     return(
       <>
         <Header />
         <div className="content">
           <section className="title-work">
-            <h1 className="title">{work['index_category']+1} - {work['Título do Projeto']}</h1>
-            <h4 className="subtitle">{thematicArea}</h4>
+            <h1 className="subtitle">{work['title']}</h1>
+            {/*}
+            <h4 className="subtitle">{work['modality']}</h4>
+            {*/}
           </section>
 
           <section className="participants">
-            {participants.map(item => (
-              <div key={item} className="item">
-                <p className="item-value">
-                  <em className="item-title">{item}: </em> 
-                  {work[item] || 'Nenhum.'}
-                </p>
-              </div>
-            ))}
+            <ul>
+              {data.map(item => (
+                <li key={item['id']} className="item">
+                  <p className="item-value">
+                    <em className="item-title">{item['key']}: </em> 
+                    {item['value'] || 'Nenhum.'}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </section>
-
+          
+          {/* PDF VIEWER */}
+          {/*}
           <section className="video">
             <iframe 
               width="100%" 
@@ -82,20 +104,21 @@ function Work() {
               webkitallowfullscreen="webkitallowfullscreen"> 
             </iframe>
           </section>
+          {*/}
 
           <section className="summary">
             <h2 className="title">Resumo do trabalho</h2>
-            <a className="btn" href={work['Arquivo do Banner em PDF']} target="_blank" rel="noopener noreferrer">
-              Resumo em PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+            <a className="btn" href={work['pdf']} target="_blank" rel="noopener noreferrer">
+              Resumo em PDF <i className="fa fa-file-pdf-o" aria-hidden="true"></i>
             </a>
             <p className="summary-text">
-              {work['Resumo'] || 'Nenhum.'}
+              {work['summary'] || 'Nenhum.'}
             </p>
           </section>
           
           <section className="box-btn-back">
             <Link to={{ pathname: `${decodeURI(window.location.pathname.substr(0, window.location.pathname.lastIndexOf("/")))}` }} className="btn btn-back">
-              <i className="fa fa-arrow-left" aria-hidden="true"></i> Voltar para {decodeURI(window.location.pathname.split('/')[2])}
+              <i className="fa fa-arrow-left" aria-hidden="true"></i> Voltar para {work['category']}
             </Link>
           </section>
         </div>
@@ -105,4 +128,3 @@ function Work() {
 }
 
 export default Work;
-

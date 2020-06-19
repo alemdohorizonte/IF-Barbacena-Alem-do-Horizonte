@@ -1,75 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
-import { useFetch, processData } from '../../services/Utils';
-
 import Header from '../../components/header/Header';
 import Loading from '../../components/loading/Loading';
 
 import './Category.css'
+import api from '../../services/Api';
 
-import file from '../../data/data.json';
 
 function Category() {
   const [filteredData, setFilteredData] = useState({});
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
-  const [data] = useFetch(file);
   const [search, setSearch] = useState('');
   
   useEffect(() => {
-    let storage = JSON.parse(localStorage.getItem('filteredItems'));
-    let param = localStorage.getItem('selectedCategory');
-    let categories = JSON.parse(localStorage.getItem('categories'));
-
-    let path = decodeURI(window.location.pathname.split('/')[2]);
-    if (!categories.includes(path)) {
-      window.location.href = `${window.location.origin}/404`;
-    }
-
-    if(storage !== null) {
-      setCategory(param);
-      
-      setFilteredData(storage);
-  
-      setCategories(categories);
-
-      setInterval(() => {
-        setLoading(false);
-      }, 1000)
-    } else {
-      setFilteredData(null);
-      setLoading(false);
-    }
+    loadProjects();
   }, []);
-
+  
   useEffect(() => {
+
     if(search.length > 0) {
-      setFilteredData(JSON.parse(localStorage.getItem('filteredItems'))
-        .filter(item => `(${item.index_category+1}) ${item['Título do Projeto'].toLowerCase()}`.includes(search.toLowerCase())));
+      setFilteredData(
+        JSON.parse(localStorage.getItem('filteredItems'))
+          .filter(item => {return item['title'].includes(search.toLowerCase())})
+      );
     } else {
       setFilteredData(JSON.parse(localStorage.getItem('filteredItems')));
     }
   }, [search]);
+  
 
+  /* Get projects from api */
+  async function loadProjects() {
+    let response = await api.get('/categories');
+    
+    let processedCategories = response.data.map((category)=> {
+      category['abbreviation'] = category['category']
+        .split(' ')
+        .join('');
+
+      return category;
+    });
+    
+    setCategories(processedCategories);
+
+    let path = decodeURI(window.location.pathname.split('/')[2]);
+    let foundCategory = processedCategories.filter((category) => {
+      return category['abbreviation'] === path;
+    });
+
+    if (foundCategory.length === 0) window.location.href = `${window.location.origin}/404`;    
+    setCategory(foundCategory[0]);
+
+    response = await api.get(`/projects/${foundCategory[0]['id']}`);
+
+    setFilteredData(response.data);
+    localStorage.setItem('filteredItems', JSON.stringify(response.data));
+    
+    setInterval(() => {
+      setLoading(false);
+    }, 1000);
+  }
+  
   async function handleSelectCategory(category) {
-    const [items] = processData(data);
-
-    localStorage.setItem('selectedCategory', category);
-
-    let filteredItems = items
-      .filter(item => item['category'] === category)
-      .map((item, index) => {item['index_category'] = index; return item })
-    await localStorage.setItem('filteredItems', JSON.stringify(filteredItems));
-    window.location.href = `${window.location.origin}/categoria/${category}`;
+    window.location.href = `${window.location.origin}/categoria/${category['abbreviation']}`;
   }
 
   function handleSearch(e) {
     let max_char = 200;
     if(e.target.value.length > max_char) 
       e.target.value = e.target.value.substr(0, max_char);
-
+    
     setSearch(e.target.value);
   }
 
@@ -82,7 +85,6 @@ function Category() {
       <Loading />
       );
   } else {
-  
     if(filteredData === null) return (<Redirect to="/" />)
     
     let list;
@@ -90,16 +92,16 @@ function Category() {
     if(filteredData.length > 0) {
       list = (<ul className="list">
         {filteredData.map((item) => (
-          <Link key={item.indice} className="bounceIn" to={{ pathname: `/categoria/${item.category}/${item.index_category+1}` }}>
+          <Link key={item['id']} className="bounceIn" to={{ pathname: `/categoria/${category['abbreviation']}/${item['id']+1}` }}>
             <li>
-              <p>{item.category}({item.index_category+1}) - {item['Título do Projeto']}</p>
+              <p>{item['modality']} - {item['title']}</p>
             </li>
           </Link>
         ))}
       </ul>);
     } else {
       list = (<ul className="list">
-        <li>
+        <li className="not-found">
           <p>Não há resultados com "{search}".</p>
         </li>
       </ul>)
@@ -114,7 +116,7 @@ function Category() {
         */}
         <div className="content">
           <section className="title-category">
-            <h1 className="title">{category}</h1>
+            <h1 className="title">{category['category']}</h1>
             <Link to={{ pathname: "/" }} className="btn-home">Início <i className="fa fa-home" aria-hidden="true"></i></Link>
           </section>
           <p>{filteredData.length} {foundWorks(filteredData.length)}</p>
@@ -125,7 +127,7 @@ function Category() {
               className="search-bar" 
               placeholder="Título do trabalho" 
               name="search-bar" 
-              id="search" 
+              id="search"
               onChange={handleSearch} 
               autoComplete="off"
             />
@@ -139,12 +141,12 @@ function Category() {
             <h1 className="title headline1 align-center">Categorias</h1>
             <ul className="box-categories">
               { categories.map(category => (
-                <li key={category}>
+                <li key={category['id']}>
                   <Link to={{
-                    pathname: `/categoria/${category}`,
+                    pathname: `/categoria/${category['abbreviation']}`,
                   }} onClick={(e) => { e.preventDefault(); handleSelectCategory(category); }}>
                     <div className="tile-category">
-                      <p className="text">{category}</p>
+                      <p className="text">{category['category']}</p>
                     </div>
                   </Link>
                 </li>

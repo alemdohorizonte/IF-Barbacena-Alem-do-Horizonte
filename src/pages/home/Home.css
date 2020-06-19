@@ -97,7 +97,7 @@ section p {
   }
 
   #capa{
-    height: 500px;
+    height: 700px;
     margin-bottom: 30px;
   }
 
@@ -106,8 +106,12 @@ section p {
   }
   
   img + iframe {
-    height: 600px;
+    min-height: 650px;
     padding: 5px 30px;
+  }
+  
+  ._ox1 {
+    width: 80% !important;
   }
 }
 
@@ -115,4 +119,17 @@ section p {
   .box-categories {
     grid-template-columns: 24% 24% 24% 24%;
   }
+}
+
+@media (min-width: 1921px) {
+  #capa {
+    height: 1000px;
+  }
+
+  img + iframe {
+    min-height: 1200px;
+    
+  }
+  
+  .headline6 {font-size: 2.5em;}
 }
