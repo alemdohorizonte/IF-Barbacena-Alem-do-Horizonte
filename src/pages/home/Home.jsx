@@ -54,18 +54,20 @@ function Home() {
             <section>
               <div>
                 <img id="capa" src={capaIfBq} alt="Capa IF Barbacena Alem do Horizonte"/>
-                <iframe 
-                  src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcampusbarbacena%2Fvideos%2F4251033948241782%2F&show_text=0" 
-                  width="100%"
-                  frameBorder="0" 
-                  allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                  title="video"
-                  allowFullScreen="allowfullscreen"
-                  mozallowfullscreen="mozallowfullscreen" 
-                  msallowfullscreen="msallowfullscreen" 
-                  oallowfullscreen="oallowfullscreen" 
-                  webkitallowfullscreen="webkitallowfullscreen">
-                </iframe>
+                <div className="box-video">
+                  <iframe 
+                    src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcampusbarbacena%2Fvideos%2F4251033948241782%2F&show_text=0&width=auto" 
+                    width="100%"
+                    frameBorder="0" 
+                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                    title="video"
+                    allowFullScreen="allowfullscreen"
+                    mozallowfullscreen="mozallowfullscreen" 
+                    msallowfullscreen="msallowfullscreen" 
+                    oallowfullscreen="oallowfullscreen" 
+                    webkitallowfullscreen="webkitallowfullscreen">
+                  </iframe>
+                </div>
                 
                 <p className="headline6 align-center">
                   Essa é a Mostra Virtual de trabalhos do IF Barbacena. Conheça os trabalhos apresentados nos estandes virtuais.

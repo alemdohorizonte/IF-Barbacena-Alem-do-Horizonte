@@ -163,6 +163,12 @@
   }
 }
 
+@media (min-width: 1200px) {
+  div.content {
+    max-width: 1380px;
+  }
+}
+
 @media (min-width: 1921px) {
   p{ font-size: 2em;}
   .title {font-size: 4em;}
