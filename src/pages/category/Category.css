@@ -68,8 +68,12 @@
   box-shadow: 0 0 3pt 1.5pt var(--primary-color);
 }
 
-.not-found {
-  border: 0px !important;
+ul.list li.not-found {
+  border: 0px;
+  background-color: var(--accent-color);
+  color: var(--color-text);
+  text-align: left;
+  width: 100%;
 }
 
 .content .list {
