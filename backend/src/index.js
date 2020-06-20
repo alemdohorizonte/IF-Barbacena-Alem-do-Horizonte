@@ -12,6 +12,7 @@ app.use(cors());
 
 let projects = [];
 let categories = [];
+let modalities = [];
 
 /**
  * Middleware usado para coletar informações do arquivo .csv e
@@ -75,6 +76,37 @@ app.get('/categories', loadData, (request, response)=>{
       categories.push({"id": i++, "category": proj.category});
   });
   return response.json(categories);
+});
+
+/**
+ * Retorna um JSON com todas as modalidades do arquvio.
+ */
+app.get('/modalities', loadData, (request, response)=>{
+  let i = 0;
+  projects.map(proj => {
+    if(modalities.findIndex(mod => mod.modality === proj.modality) < 0)
+      modalities.push({"id": i++, "modality": proj.modality});
+  });
+  return response.json(modalities);
+});
+
+/**
+ * Retorna um JSON com todos os projetos com a modalidade do id especificado.
+ */
+app.get('/projects/modality/:modalityid', loadData, (request, response)=>{
+  const { modalityid } = request.params;
+  if(modalityid >= modalities.length)
+    return response.status(400).send("Invalid ID");
+
+
+  const modality = modalities[modalityid].modality;
+  const filteredProjects = [];
+  projects.map(proj=>  {
+    if(proj.modality.includes(modality)) filteredProjects.push(proj);
+  });    
+
+
+  return response.json(filteredProjects);
 });
 
 
