@@ -197,11 +197,11 @@ ul.list li.not-found {
     align-items: center;
   }
 
-  .title-category + p {font-size: 1.5em;}
+  .title-category + p {font-size: 1.2em;}
 
   .box-search .search-bar {
     height: 40px;
-    font-size: 1.1em;
+    font-size: 1em;
   }
 
   .content .list {
@@ -221,7 +221,8 @@ ul.list li.not-found {
     margin: 2px;
     border: 1px solid;
     width: 48.9%;
-    max-height: 100px;
+    /*max-height: 150px;*/
+    height: 150px;
     border-radius: 4px;
     color: var(--accent-color);
     background-color: var(--primary-color);
@@ -243,7 +244,7 @@ ul.list li.not-found {
 
 @media (min-width: 1200px) {
   .content .list a {
-    width: 32.9%;
+    width: 32.7%;
   }
 }
 
@@ -259,6 +260,11 @@ ul.list li.not-found {
   
   .content .list {
     max-height: 1200px;
+  }
+
+  .content .list a {
+    /*max-height: 230px;*/
+    height: 230px;
   }
 
   .tile-category p {font-size: 2em;}

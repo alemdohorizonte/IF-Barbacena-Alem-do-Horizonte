@@ -45,15 +45,14 @@ function Work() {
     );
   } else {
     if(!work) return (<Redirect to="/404" />);
-    if(decodeURI(window.location.pathname.split('/')[2]) !== work['category'].split(' ').join('')) return (<Redirect to="/404" />);
+    if(decodeURI(window.location.pathname.split('/')[2]) !== work['modality'].split(' ').join('')) return (<Redirect to="/404" />);
     //console.log(decodeURI(window.location.pathname.split('/')[2]) + ' - ' + work['category'].split(' ').join(''));
 
     let data = [
-      {id: 0, key: 'Código', value: `#${work['id']+1}`}, 
-      {id: 1, key: 'Autores', value: work['authors']}, 
-      //'Orientadores: ', 
+      {id: 0, key: 'Número', value: `#${work['id']+1}`}, 
+      {id: 1, key: 'Autores', value: work['authors']},
       {id: 2, key: 'Instituição', value: work['institution']}, 
-      {id: 3, key: 'Categoria do Trabalho', value: work['category']},
+      {id: 3, key: 'Área temática', value: work['category']},
       {id: 4, key: 'Modalidade', value: work['modality']}
     ];
     /*
@@ -118,7 +117,7 @@ function Work() {
           
           <section className="box-btn-back">
             <Link to={{ pathname: `${decodeURI(window.location.pathname.substr(0, window.location.pathname.lastIndexOf("/")))}` }} className="btn btn-back">
-              <i className="fa fa-arrow-left" aria-hidden="true"></i> Voltar para {work['category']}
+              <i className="fa fa-arrow-left" aria-hidden="true"></i> Voltar para {work['modality']}
             </Link>
           </section>
         </div>

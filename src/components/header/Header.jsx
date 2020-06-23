@@ -11,10 +11,10 @@ function header() {
     <header className="header bg-header">
       <div id="box-logo">
         <Link to="/">
-          <img id="logo" alt="Logo IF Barbacena Além do Horizonte" src={logo} />
+          <img id="logo" alt="Logo Pesquisa e Extensão - IF Barbacena Além do Horizonte" src={logo} />
         </Link>
         <a target="_blank" className="logo-if" rel="noopener noreferrer" href="https://www.ifsudestemg.edu.br/barbacena">
-          <img id="ifbq" alt="Logo IF Barbacena Além do Horizonte" src={ifbq} />
+          <img id="ifbq" alt="Logo IF Barbacena" src={ifbq} />
         </a>
       </div>
     </header>

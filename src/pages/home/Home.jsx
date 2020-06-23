@@ -19,7 +19,7 @@ function Home() {
   }, []);
 
   async function loadCategories() {
-    let response = await api.get('/categories');;
+    let response = await api.get('/modalities');;
     
     setData(response);
     
@@ -39,7 +39,7 @@ function Home() {
       let categories = data.data;
       
       categories.map((category)=> {
-        category['abbreviation'] = category['category']
+        category['abbreviation'] = category['modality']
           .split(' ')
           .join('');
 
@@ -53,7 +53,7 @@ function Home() {
           <div className="content">
             <section>
               <div>
-                <img id="capa" src={capaIfBq} alt="Capa IF Barbacena Alem do Horizonte"/>
+                <img id="capa" src={capaIfBq} alt="Capa Pesquisa e Extensão - IF Barbacena Alem do Horizonte #EuFicoEmCasa"/>
                 <div className="box-video">
                   <iframe 
                     src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcampusbarbacena%2Fvideos%2F4251033948241782%2F&show_text=0&width=auto" 
@@ -83,7 +83,7 @@ function Home() {
                       pathname: `/categoria/${category['abbreviation']}`,
                     }}>
                       <div className="tile-category">
-                        <p className="text">{category['category']}</p>
+                        <p className="text">{category['modality']}</p>
                       </div>
                     </Link>
                   </li>

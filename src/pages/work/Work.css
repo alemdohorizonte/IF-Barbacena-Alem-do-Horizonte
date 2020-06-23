@@ -30,8 +30,7 @@
   background-color: var(--primary-color);
   border-radius: var(--border-radius-card);
   color: var(--accent-color);
-
-  padding: 10px 0 20px;
+  padding: 10px 0;
 }
 
 .participants .item .item-title {

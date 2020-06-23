@@ -20,11 +20,10 @@ function Category() {
   }, []);
   
   useEffect(() => {
-
     if(search.length > 0) {
       setFilteredData(
         JSON.parse(localStorage.getItem('filteredItems'))
-          .filter(item => {return item['title'].includes(search.toLowerCase())})
+          .filter(item =>`${item['category'].toLowerCase()} ${item['title'].toLowerCase()}`.includes(search.toLowerCase()))
       );
     } else {
       setFilteredData(JSON.parse(localStorage.getItem('filteredItems')));
@@ -34,10 +33,10 @@ function Category() {
 
   /* Get projects from api */
   async function loadProjects() {
-    let response = await api.get('/categories');
+    let response = await api.get('/modalities');
     
     let processedCategories = response.data.map((category)=> {
-      category['abbreviation'] = category['category']
+      category['abbreviation'] = category['modality']
         .split(' ')
         .join('');
 
@@ -54,7 +53,7 @@ function Category() {
     if (foundCategory.length === 0) window.location.href = `${window.location.origin}/404`;    
     setCategory(foundCategory[0]);
 
-    response = await api.get(`/projects/${foundCategory[0]['id']}`);
+    response = await api.get(`/projects/modality/${foundCategory[0]['id']}`);
 
     setFilteredData(response.data);
     localStorage.setItem('filteredItems', JSON.stringify(response.data));
@@ -94,7 +93,7 @@ function Category() {
         {filteredData.map((item) => (
           <Link key={item['id']} className="bounceIn" to={{ pathname: `/categoria/${category['abbreviation']}/${item['id']+1}` }}>
             <li>
-              <p>{item['modality']} - {item['title']}</p>
+              <p>{item['category']} - {item['title']}</p>
             </li>
           </Link>
         ))}
@@ -116,7 +115,7 @@ function Category() {
         */}
         <div className="content">
           <section className="title-category">
-            <h1 className="title">{category['category']}</h1>
+            <h1 className="title">{category['modality']}</h1>
             <Link to={{ pathname: "/" }} className="btn-home">Início <i className="fa fa-home" aria-hidden="true"></i></Link>
           </section>
           <p>{filteredData.length} {foundWorks(filteredData.length)}</p>
@@ -125,7 +124,7 @@ function Category() {
             <input 
               type="search" 
               className="search-bar" 
-              placeholder="Título do trabalho" 
+              placeholder="Digite o Título do trabalho ou Área temática"
               name="search-bar" 
               id="search"
               onChange={handleSearch} 
@@ -146,7 +145,7 @@ function Category() {
                     pathname: `/categoria/${category['abbreviation']}`,
                   }} onClick={(e) => { e.preventDefault(); handleSelectCategory(category); }}>
                     <div className="tile-category">
-                      <p className="text">{category['category']}</p>
+                      <p className="text">{category['modality']}</p>
                     </div>
                   </Link>
                 </li>

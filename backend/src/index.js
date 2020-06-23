@@ -5,7 +5,6 @@ const fs = require('fs').promises;
 const project = require('./project');
 const cors = require('cors');
 
-
 const app = express();
 
 app.use(cors());
@@ -42,18 +41,13 @@ app.get('/projects', loadData, (request, response)=>{
 /**
  * Retorna um JSON com todos os projetos com a categoria do id especificado.
  */
-app.get('/projects/:categoryid', loadData, (request, response)=>{
+app.get('/projects/category/:categoryid', loadData, (request, response)=>{
   const { categoryid } = request.params;
   if(categoryid >= categories.length)
     return response.status(400).send("Invalid ID");
 
-
   const category = categories[categoryid].category;
-  const filteredProjects = [];
-  projects.map(proj=>  {
-    if(proj.category.includes(category)) filteredProjects.push(proj);
-  });    
-
+  const filteredProjects = projects.filter(proj=> proj.category.includes(category));
 
   return response.json(filteredProjects);
 });
@@ -98,16 +92,13 @@ app.get('/projects/modality/:modalityid', loadData, (request, response)=>{
   if(modalityid >= modalities.length)
     return response.status(400).send("Invalid ID");
 
-
   const modality = modalities[modalityid].modality;
-  const filteredProjects = [];
-  projects.map(proj=>  {
-    if(proj.modality.includes(modality)) filteredProjects.push(proj);
-  });    
-
+  const filteredProjects = projects.filter(proj=>proj.modality.includes(modality));
 
   return response.json(filteredProjects);
 });
 
-
-app.listen(3333);
+app.listen(3333, function() {
+  var port = this.address().port;
+  console.log(`Server listening on port ${port}.`);
+});

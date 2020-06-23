@@ -135,3 +135,23 @@ li.destaque a:hover {
     height: 80%;
   }
 }
+
+@media (min-width: 1921px) {
+  .header {
+    position: relative;
+    height: 200px;
+  }
+
+  #logo {
+    width: 550px;
+  }
+
+  #ifbq {
+    width: 155px;
+    height: 100%;
+  }
+
+  .logo-if {
+    height: 80%;
+  }
+}
