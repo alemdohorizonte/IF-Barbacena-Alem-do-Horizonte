@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { Document, Page } from 'react-pdf/dist/umd/entry.webpack';
 
 import Header from '../../components/header/Header';
 import Loading from '../../components/loading/Loading';
@@ -86,7 +87,13 @@ function Work() {
             </ul>
           </section>
           
-          {/* PDF VIEWER */}
+          <section className='banner'>
+            <Document
+              file="https://raw.githubusercontent.com/wojtekmaj/react-pdf/master/sample/webpack/sample.pdf"
+            >
+              <Page pageNumber={1} />
+            </Document>
+          </section>
           {/*}
           <section className="video">
             <iframe 
@@ -107,9 +114,9 @@ function Work() {
 
           <section className="summary">
             <h2 className="title">Resumo do trabalho</h2>
-            <a className="btn" href={work['pdf']} target="_blank" rel="noopener noreferrer">
+            {/* <a className="btn" href={work['pdf']} target="_blank" rel="noopener noreferrer">
               Resumo em PDF <i className="fa fa-file-pdf-o" aria-hidden="true"></i>
-            </a>
+            </a> */}
             <p className="summary-text">
               {work['summary'] || 'Nenhum.'}
             </p>

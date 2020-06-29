@@ -18,6 +18,14 @@
   width: 100%;
 }
 
+.banner {
+  margin-top: 10px;
+}
+
+.banner canvas {
+  display: initial !important;
+}
+
 .title-work .subtitle {
   margin: 0;
   padding: 10px 15px;
