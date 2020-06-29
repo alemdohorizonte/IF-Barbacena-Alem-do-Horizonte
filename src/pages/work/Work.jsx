@@ -3,9 +3,9 @@ import { Link, Redirect } from 'react-router-dom';
 
 import Header from '../../components/header/Header';
 import Loading from '../../components/loading/Loading';
-import api from '../../services/Api';
+import api from '../../services/api';
 
-import './Work.css';
+import './work.css';
 
 function Work() {
   const [loading, setLoading] = useState(true);

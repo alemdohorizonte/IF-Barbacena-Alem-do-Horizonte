@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import Loading from '../../components/loading/Loading';
 import Header from '../../components/header/Header';
 
-import './Home.css';
+import './home.css';
 
-import api from '../../services/Api';
+import api from '../../services/api';
 
 import capaIfBq from '../../assets/images/capa_fb_ifbq.png';
 

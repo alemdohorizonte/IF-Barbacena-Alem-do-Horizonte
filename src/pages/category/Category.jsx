@@ -4,8 +4,8 @@ import { Redirect, Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Loading from '../../components/loading/Loading';
 
-import './Category.css'
-import api from '../../services/Api';
+import './category.css'
+import api from '../../services/api';
 
 
 function Category() {

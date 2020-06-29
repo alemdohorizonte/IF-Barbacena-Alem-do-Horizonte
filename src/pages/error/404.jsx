@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './Error.css'
+import './error.css'
 
 export default () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Loading.css'
+import './loading.css'
 
 import logo from '../../assets/images/ifbq_mod.png'
 

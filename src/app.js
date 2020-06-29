@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Home from './pages/home/Home';
-import Category from './pages/category/Category';
+import Category from './pages/category/category';
 import Work from './pages/work/Work';
 import NotFound from './pages/error/404';
 
