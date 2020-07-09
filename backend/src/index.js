@@ -1,4 +1,5 @@
 const express = require('express');
+const requester = require('request');
 const parser = require('papaparse');
 const path = require('path');
 const fs = require('fs').promises;
@@ -58,6 +59,20 @@ app.get('/projects/category/:categoryid', loadData, (request, response)=>{
 app.get('/project/:id', loadData, (request, response)=>{
   const { id } = request.params;
   return response.json(projects[id]);
+});
+
+/**
+ * Retorna um JSON com o projeto de id especificado.
+ */
+app.get('/project/:id/pdf', loadData, (request, response)=>{
+  const { id } = request.params;
+
+  let pdf = projects[id].pdf;
+  let driveId = pdf.match(/(https?:\/\/)?drive.google.com\/file\/d\/([^\/?]+)/)[2];
+
+  requester({
+    uri: 'https://drive.google.com/u/0/uc?id=' + driveId + '&export=download'
+  }).pipe(response);
 });
 
 /**

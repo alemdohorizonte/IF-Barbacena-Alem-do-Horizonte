@@ -89,7 +89,7 @@ function Work() {
           
           <section className='banner'>
             <Document
-              file="https://raw.githubusercontent.com/wojtekmaj/react-pdf/master/sample/webpack/sample.pdf"
+              file={`http://localhost:3333/project/${work['id']}/pdf`}
             >
               <Page pageNumber={1} />
             </Document>
