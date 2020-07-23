@@ -24,7 +24,7 @@
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "client": "react-scripts start",
     "server": "cd backend && cd src && node index.js",
-    "build": "npm install && cd backend && cd src && npm install",
+    "build": "npm install && react-scripts build && cd backend && cd src && npm install ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
