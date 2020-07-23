@@ -1,16 +1,13 @@
 const express = require('express');
 const requester = require('request');
-const parser = require('papaparse');
-const path = require('path');
-const fs = require('fs').promises;
-const project = require('./project');
+const projects = require('./respostas.json');
 const cors = require('cors');
 
 const app = express();
 
 app.use(cors());
 
-let projects = [];
+let alreadyLoad =  false;
 let categories = [];
 let modalities = [];
 
@@ -19,16 +16,19 @@ let modalities = [];
  * armazenar na variável 'projects'
  */
 async function loadData(request, response, next){
-  if(projects.length == 0){
-    let id = 0
-    const data = await fs.readFile(path.join(__dirname, 'respostas.csv'), 'UTF-8');
-    parser.parse(data, {
-      complete: function (results) {
-        results.data.splice(0,1);
-        results.data.map(proj => projects.push(new project(id++, ...proj)));
-        next();
-      }
-    });
+  if(!alreadyLoad){
+    for (i = 1; i < projects.length; i++) {
+      projects[i].id = i;
+
+      if(projects[i].category1 != null)
+        projects[i].category = projects[i].category1;
+      if(projects[i].category2 != null)
+        projects[i].category = projects[i].category2;
+      if(projects[i].category3 != null)
+        projects[i].category = projects[i].category3;
+    }
+
+    alreadyLoad = true;
   }else next();
 }
 
