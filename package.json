@@ -18,14 +18,14 @@
     "react-pdf": "^5.0.0-beta.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "serve": "^11.3.2"
   },
   "scripts": {
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "serve -s build",
     "client": "react-scripts start",
     "server": "cd backend && cd src && node index.js",
     "build": "npm install && react-scripts build && cd backend && cd src && npm install ",
-
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
