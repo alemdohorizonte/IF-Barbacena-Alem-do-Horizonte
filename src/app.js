@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import Home from './pages/home/home';
-import Category from './pages/category/category';
-import Work from './pages/work/work';
+import Home from './pages/home/Home';
+import Category from './pages/category/Category';
+import Work from './pages/work/Work';
 import NotFound from './pages/error/404';
 
 class App extends Component {

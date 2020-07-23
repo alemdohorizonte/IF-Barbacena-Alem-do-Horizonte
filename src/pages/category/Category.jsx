@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
-import Header from '../../components/header/header';
-import Loading from '../../components/loading/loading';
+import Header from '../../components/header/Header';
+import Loading from '../../components/loading/Loading';
 
-import './category.css'
-import api from '../../services/api';
+import './Category.css'
+import api from '../../services/Api';
 
 
 function Category() {
@@ -93,7 +93,7 @@ function Category() {
         {filteredData.map((item) => (
           <Link key={item['id']} className="bounceIn" to={{ pathname: `/categoria/${category['abbreviation']}/${item['id']+1}` }}>
             <li>
-              <p>{item['category']} - {item['title']}</p>
+              <p>{item['title']}</p>
             </li>
           </Link>
         ))}

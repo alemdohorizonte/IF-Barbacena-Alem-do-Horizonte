@@ -3,7 +3,7 @@ import React from 'react';
 import logo from '../../assets/images/logo_mod.png';
 import ifbq from '../../assets/images/ifbq_mod.png';
 
-import './header.css'
+import './Header.css'
 import { Link } from 'react-router-dom';
 
 function header() {  

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import Loading from '../../components/loading/loading';
-import Header from '../../components/header/header';
+import Loading from '../../components/loading/Loading';
+import Header from '../../components/header/Header';
 
-import './home.css';
+import './Home.css';
 
-import api from '../../services/api';
+import api from '../../services/Api';
 
 import capaIfBq from '../../assets/images/capa_fb_ifbq.png';
 
