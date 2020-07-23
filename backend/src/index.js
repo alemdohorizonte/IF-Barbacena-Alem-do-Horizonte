@@ -2,10 +2,12 @@ const express = require('express');
 const requester = require('request');
 const projects = require('./respostas.json');
 const cors = require('cors');
-
 const app = express();
 
 app.use(cors());
+
+const port = process.env.PORT || 5000;
+
 
 let alreadyLoad =  false;
 let categories = [];
@@ -110,7 +112,7 @@ app.get('/projects/modality/:modalityid', loadData, (request, response)=>{
   return response.json(filteredProjects);
 });
 
-app.listen(3333, function() {
+app.listen(port, function() {
   var port = this.address().port;
   console.log(`Server listening on port ${port}.`);
 });
