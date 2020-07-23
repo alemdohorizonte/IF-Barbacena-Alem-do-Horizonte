@@ -66,12 +66,9 @@ app.get('/project/:id', loadData, (request, response)=>{
  */
 app.get('/project/:id/pdf', loadData, (request, response)=>{
   const { id } = request.params;
-
-  let pdf = projects[id].pdf;
-  let driveId = pdf.match(/(https?:\/\/)?drive.google.com\/file\/d\/([^\/?]+)/)[2];
-
+  
   requester({
-    uri: 'https://drive.google.com/u/0/uc?id=' + driveId + '&export=download'
+    uri: 'https://drive.google.com/u/0/uc?id=' +  new URL(projects[id].pdf).searchParams.get('id') + '&export=download'
   }).pipe(response);
 });
 
