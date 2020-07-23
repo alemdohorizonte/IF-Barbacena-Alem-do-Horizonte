@@ -3,48 +3,27 @@ const requester = require('request');
 const projects = require('./respostas.json');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 
+app.use(express.static(path.join(__dirname, '../../build')));
 app.use(cors());
 
 const port = 5000;
 
-
-let alreadyLoad =  false;
 let categories = [];
 let modalities = [];
 
 /**
- * Middleware usado para coletar informações do arquivo .csv e
- * armazenar na variável 'projects'
- */
-async function loadData(request, response, next){
-  if(!alreadyLoad){
-    for (i = 1; i < projects.length; i++) {
-      projects[i].id = i;
-
-      if(projects[i].category1 != null)
-        projects[i].category = projects[i].category1;
-      if(projects[i].category2 != null)
-        projects[i].category = projects[i].category2;
-      if(projects[i].category3 != null)
-        projects[i].category = projects[i].category3;
-    }
-
-    alreadyLoad = true;
-  }else next();
-}
-
-/**
  * Retorna um JSON com todos os projetos do arquvio.
  */
-app.get('/projects', loadData, (request, response)=>{
+app.get('/api/projects', (request, response)=>{
   return response.json(projects);
 });
 
 /**
  * Retorna um JSON com todos os projetos com a categoria do id especificado.
  */
-app.get('/projects/category/:categoryid', loadData, (request, response)=>{
+app.get('/api/projects/category/:categoryid', (request, response)=>{
   const { categoryid } = request.params;
   if(categoryid >= categories.length)
     return response.status(400).send("Invalid ID");
@@ -58,7 +37,7 @@ app.get('/projects/category/:categoryid', loadData, (request, response)=>{
 /**
  * Retorna um JSON com o projeto de id especificado.
  */
-app.get('/project/:id', loadData, (request, response)=>{
+app.get('/api/project/:id', (request, response)=>{
   const { id } = request.params;
   return response.json(projects[id]);
 });
@@ -66,7 +45,7 @@ app.get('/project/:id', loadData, (request, response)=>{
 /**
  * Retorna um JSON com o projeto de id especificado.
  */
-app.get('/project/:id/pdf', loadData, (request, response)=>{
+app.get('/api/project/:id/pdf', (request, response)=>{
   const { id } = request.params;
   
   requester({
@@ -77,7 +56,7 @@ app.get('/project/:id/pdf', loadData, (request, response)=>{
 /**
  * Retorna um JSON com todas as categorias do arquvio.
  */
-app.get('/categories', loadData, (request, response)=>{
+app.get('/api/categories', (request, response)=>{
   let i = 0;
   projects.map(proj => {
     if(categories.findIndex(cat => cat.category === proj.category) < 0)
@@ -89,7 +68,7 @@ app.get('/categories', loadData, (request, response)=>{
 /**
  * Retorna um JSON com todas as modalidades do arquvio.
  */
-app.get('/modalities', loadData, (request, response)=>{
+app.get('/api/modalities', (request, response)=>{
   let i = 0;
   projects.map(proj => {
     if(modalities.findIndex(mod => mod.modality === proj.modality) < 0)
@@ -101,7 +80,7 @@ app.get('/modalities', loadData, (request, response)=>{
 /**
  * Retorna um JSON com todos os projetos com a modalidade do id especificado.
  */
-app.get('/projects/modality/:modalityid', loadData, (request, response)=>{
+app.get('/api/projects/modality/:modalityid', (request, response)=>{
   const { modalityid } = request.params;
   if(modalityid >= modalities.length)
     return response.status(400).send("Invalid ID");
@@ -112,7 +91,24 @@ app.get('/projects/modality/:modalityid', loadData, (request, response)=>{
   return response.json(filteredProjects);
 });
 
+
+app.get('*', function(req, res) {
+  res.sendFile(path.resolve(__dirname, '../../build', 'index.html'));
+});
+
 app.listen(port, function() {
   var port = this.address().port;
+
+  for (i = 1; i < projects.length; i++) {
+    projects[i].id = i;
+
+    if(projects[i].category1 != null)
+      projects[i].category = projects[i].category1;
+    if(projects[i].category2 != null)
+      projects[i].category = projects[i].category2;
+    if(projects[i].category3 != null)
+      projects[i].category = projects[i].category3;
+  }
+
   console.log(`Server listening on port ${port}.`);
 });

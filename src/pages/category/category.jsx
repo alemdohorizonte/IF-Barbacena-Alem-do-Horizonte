@@ -33,7 +33,7 @@ function Category() {
 
   /* Get projects from api */
   async function loadProjects() {
-    let response = await api.get('/modalities');
+    let response = await api.get('api/modalities');
     
     let processedCategories = response.data.map((category)=> {
       category['abbreviation'] = category['modality']
@@ -53,7 +53,7 @@ function Category() {
     if (foundCategory.length === 0) window.location.href = `${window.location.origin}/404`;    
     setCategory(foundCategory[0]);
 
-    response = await api.get(`/projects/modality/${foundCategory[0]['id']}`);
+    response = await api.get(`api/projects/modality/${foundCategory[0]['id']}`);
 
     setFilteredData(response.data);
     localStorage.setItem('filteredItems', JSON.stringify(response.data));

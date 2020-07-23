@@ -19,7 +19,7 @@ function Work() {
   async function loadProject() {
     let id = parseInt(window.location.pathname.substr(window.location.pathname.lastIndexOf('/')+1));
 
-    let response = await api.get(`/project/${id-1}`);
+    let response = await api.get(`api/project/${id-1}`);
     let project = response.data;
 
     setWork(project);
@@ -89,7 +89,7 @@ function Work() {
           
           <section className='banner'>
             <Document
-              file={`/project/${work['id']}/pdf`}
+              file={window.origin + `/api/project/${work['id']}/pdf`}
             >
               <Page pageNumber={1} width={window.innerWidth} scale={0.7} />
             </Document>

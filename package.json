@@ -22,8 +22,7 @@
     "serve": "^11.3.2"
   },
   "scripts": {
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"serve -s build\"",
-    
+    "start": "npm run server",
     "client": "react-scripts start",
     "server": "cd backend && cd src && node index.js",
     "build": "npm install && react-scripts build && cd backend && cd src && npm install ",

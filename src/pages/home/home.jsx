@@ -19,7 +19,7 @@ function Home() {
   }, []);
 
   async function loadCategories() {
-    let response = await api.get('/modalities');;
+    let response = await api.get('api/modalities');;
     
     setData(response);
     
