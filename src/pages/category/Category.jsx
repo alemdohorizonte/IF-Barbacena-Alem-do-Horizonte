@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
-import Header from '../../components/header/Header';
-import Loading from '../../components/loading/Loading';
+import Header from '../../components/header/header';
+import Loading from '../../components/loading/loading';
 
 import './category.css'
 import api from '../../services/api';

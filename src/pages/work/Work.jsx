@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Document, Page } from 'react-pdf/dist/umd/entry.webpack';
 
-import Header from '../../components/header/Header';
-import Loading from '../../components/loading/Loading';
+import Header from '../../components/header/header';
+import Loading from '../../components/loading/loading';
 import api from '../../services/api';
 
 import './work.css';

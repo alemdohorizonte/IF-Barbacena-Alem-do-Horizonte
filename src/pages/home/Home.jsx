@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import Loading from '../../components/loading/Loading';
-import Header from '../../components/header/Header';
+import Loading from '../../components/loading/loading';
+import Header from '../../components/header/header';
 
 import './home.css';
 
