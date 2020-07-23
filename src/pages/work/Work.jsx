@@ -91,7 +91,7 @@ function Work() {
             <Document
               file={`http://localhost:3333/project/${work['id']}/pdf`}
             >
-              <Page pageNumber={1} />
+              <Page pageNumber={1} width={window.innerWidth - 150} scale={0.8} />
             </Document>
           </section>
           {/*}
@@ -112,15 +112,15 @@ function Work() {
           </section>
           {*/}
 
-          <section className="summary">
+          {/* <section className="summary">
             <h2 className="title">Resumo do trabalho</h2>
             {/* <a className="btn" href={work['pdf']} target="_blank" rel="noopener noreferrer">
               Resumo em PDF <i className="fa fa-file-pdf-o" aria-hidden="true"></i>
-            </a> */}
+            </a> 
             <p className="summary-text">
               {work['summary'] || 'Nenhum.'}
             </p>
-          </section>
+          </section> */}
           
           <section className="box-btn-back">
             <Link to={{ pathname: `${decodeURI(window.location.pathname.substr(0, window.location.pathname.lastIndexOf("/")))}` }} className="btn btn-back">
