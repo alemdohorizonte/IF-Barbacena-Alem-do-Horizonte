@@ -89,9 +89,9 @@ function Work() {
           
           <section className='banner'>
             <Document
-              file={`http://localhost:3333/project/${work['id']}/pdf`}
+              file={`/project/${work['id']}/pdf`}
             >
-              <Page pageNumber={1} width={window.innerWidth - 150} scale={0.8} />
+              <Page pageNumber={1} width={window.innerWidth} scale={0.7} />
             </Document>
           </section>
           {/*}
