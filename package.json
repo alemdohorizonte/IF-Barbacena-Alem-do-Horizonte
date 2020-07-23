@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "@zeit/next-css": "^1.0.1",
     "axios": "^0.19.2",
+    "concurrently": "^5.2.0",
     "font-awesome": "^4.7.0",
     "next": "^9.4.1",
     "next-images": "^1.4.0",
