@@ -93,7 +93,7 @@ function Category() {
         {filteredData.map((item) => (
           <Link key={item['id']} className="bounceIn" to={{ pathname: `/categoria/${category['abbreviation']}/${item['id']+1}` }}>
             <li>
-              <p>{item['category']} - {item['title']}</p>
+              <p>{item['title']}</p>
             </li>
           </Link>
         ))}
