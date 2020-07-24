@@ -245,7 +245,7 @@ ul.list li.not-found {
 @media (min-width: 1200px) {
   .content .list a {
     width: 32.7%;
-    min-height: 180px;
+    min-height: 215px;
   }
 }
 
