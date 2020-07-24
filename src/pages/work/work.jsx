@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Document, Page } from 'react-pdf/dist/umd/entry.webpack';
-
 import Header from '../../components/header/header';
 import Loading from '../../components/loading/loading';
 import api from '../../services/api';
@@ -46,15 +45,15 @@ function Work() {
     );
   } else {
     if(!work) return (<Redirect to="/404" />);
-    if(decodeURI(window.location.pathname.split('/')[2]) !== work['modality'].split(' ').join('')) return (<Redirect to="/404" />);
+    if(decodeURI(window.location.pathname.split('/')[2]) !== work['modality']['modality'].split(' ').join('')) return (<Redirect to="/404" />);
     //console.log(decodeURI(window.location.pathname.split('/')[2]) + ' - ' + work['category'].split(' ').join(''));
 
     let data = [
       {id: 0, key: 'Número', value: `#${work['id']+1}`}, 
       {id: 1, key: 'Autores', value: work['authors']},
       {id: 2, key: 'Instituição', value: work['institution']}, 
-      {id: 3, key: 'Área temática', value: work['category']},
-      {id: 4, key: 'Modalidade', value: work['modality']}
+      {id: 3, key: 'Área temática', value: work['category']['category']},
+      {id: 4, key: 'Modalidade', value: work['modality']['modality']}
     ];
     /*
     let youtube = `https://www.youtube.com/embed/${work['Link do vídeo do youtube'].includes('watch') ? 
@@ -89,9 +88,21 @@ function Work() {
           
           <section className='banner'>
             <Document
-              file={window.origin + `/api/project/${work['id']}/pdf`}
+              file={`/api/project/${work['id']}/pdf`}
+              loading={
+                <div className="box-loading">
+                  <div className="border"></div>
+                </div>
+              } 
+              error={
+                <a href={work['pdf']} target="_blank" rel="noopener noreferrer" >Erro ao carregar o pdf, clique aqui visuzl.</a>
+              }
             >
-              <Page pageNumber={1} width={window.innerWidth} scale={0.7} />
+              <Page pageNumber={1} width={window.innerWidth} scale={0.7} loading={
+                <div className="box-loading">
+                  <div className="border"></div>
+                </div>
+              } />
             </Document>
           </section>
           {/*}
@@ -124,7 +135,7 @@ function Work() {
           
           <section className="box-btn-back">
             <Link to={{ pathname: `${decodeURI(window.location.pathname.substr(0, window.location.pathname.lastIndexOf("/")))}` }} className="btn btn-back">
-              <i className="fa fa-arrow-left" aria-hidden="true"></i> Voltar para {work['modality']}
+              <i className="fa fa-arrow-left" aria-hidden="true"></i> Voltar para {work['modality']['']}
             </Link>
           </section>
         </div>

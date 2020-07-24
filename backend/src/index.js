@@ -1,6 +1,8 @@
 const express = require('express');
 const requester = require('request');
 const projects = require('./respostas.json');
+const categories = require('./categories.json');
+const modalities = require('./modalities.json');
 const cors = require('cors');
 const app = express();
 const path = require('path');
@@ -9,9 +11,6 @@ app.use(express.static(path.join(__dirname, '../../build')));
 app.use(cors());
 
 const port = process.env.PORT || 5000;
-
-let categories = [];
-let modalities = [];
 
 /**
  * Retorna um JSON com todos os projetos do arquvio.
@@ -57,11 +56,6 @@ app.get('/api/project/:id/pdf', (request, response)=>{
  * Retorna um JSON com todas as categorias do arquvio.
  */
 app.get('/api/categories', (request, response)=>{
-  let i = 0;
-  projects.map(proj => {
-    if(categories.findIndex(cat => cat.category === proj.category) < 0)
-      categories.push({"id": i++, "category": proj.category});
-  });
   return response.json(categories);
 });
 
@@ -69,11 +63,6 @@ app.get('/api/categories', (request, response)=>{
  * Retorna um JSON com todas as modalidades do arquvio.
  */
 app.get('/api/modalities', (request, response)=>{
-  let i = 0;
-  projects.map(proj => {
-    if(modalities.findIndex(mod => mod.modality === proj.modality) < 0)
-      modalities.push({"id": i++, "modality": proj.modality});
-  });
   return response.json(modalities);
 });
 
@@ -82,15 +71,13 @@ app.get('/api/modalities', (request, response)=>{
  */
 app.get('/api/projects/modality/:modalityid', (request, response)=>{
   const { modalityid } = request.params;
-  if(modalityid >= modalities.length)
+  if(modalityid > modalities.length)
     return response.status(400).send("Invalid ID");
 
-  const modality = modalities[modalityid].modality;
-  const filteredProjects = projects.filter(proj=>proj.modality.includes(modality));
+  const filteredProjects = projects.filter(proj=>proj.modality.id === parseInt(modalityid));
 
   return response.json(filteredProjects);
 });
-
 
 app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, '../../build', 'index.html'));
@@ -98,17 +85,6 @@ app.get('*', function(req, res) {
 
 app.listen(port, function() {
   var port = this.address().port;
-
-  for (i = 1; i < projects.length; i++) {
-    projects[i].id = i;
-
-    if(projects[i].category1 != null)
-      projects[i].category = projects[i].category1;
-    if(projects[i].category2 != null)
-      projects[i].category = projects[i].category2;
-    if(projects[i].category3 != null)
-      projects[i].category = projects[i].category3;
-  }
 
   console.log(`Server listening on port ${port}.`);
 });
