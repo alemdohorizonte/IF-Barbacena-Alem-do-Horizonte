@@ -135,7 +135,7 @@ function Work() {
           
           <section className="box-btn-back">
             <Link to={{ pathname: `${decodeURI(window.location.pathname.substr(0, window.location.pathname.lastIndexOf("/")))}` }} className="btn btn-back">
-              <i className="fa fa-arrow-left" aria-hidden="true"></i> Voltar para {work['modality']['']}
+              <i className="fa fa-arrow-left" aria-hidden="true"></i> Voltar
             </Link>
           </section>
         </div>
