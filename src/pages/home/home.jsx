@@ -70,8 +70,13 @@ function Home() {
                 </div>
                 
                 <p className="headline6 align-center">
-                  Essa é a Mostra Virtual de trabalhos do IF Barbacena. Conheça os trabalhos apresentados nos estandes virtuais.
+                  Essa é a exposição de pôsteres dos trabalhos aceitos para apresentação no "Pesquisa e Extensão: IF Barbacena além do Horizonte".
+                   <br/>
+                  <a  target="_blank" rel="noopener noreferrer" href='https://www.ifsudestemg.edu.br/noticias/barbacena/divulgada-a-programacao-do-pesquisa-e-extensao-if-barbacena-alem-do-horizonte/programacao-de-apresentacao-de-trabalhos.pdf'>
+                  Clique aqui para saber mais sobre a programação
+                  </a>
                 </p>
+                
               </div>
             </section>
             <section id="categories">
