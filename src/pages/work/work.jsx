@@ -52,7 +52,7 @@ function Work() {
       {id: 0, key: 'Número', value: `#${work['id']+1}`}, 
       {id: 1, key: 'Autores', value: work['authors']},
       {id: 2, key: 'Instituição', value: work['institution']}, 
-      {id: 3, key: 'Área temática', value: work['category']['category']},
+      {id: 3, key: 'Área temática', value: work['category']},
       {id: 4, key: 'Modalidade', value: work['modality']['modality']}
     ];
     /*
