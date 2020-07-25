@@ -830,22 +830,6 @@
     "category": "Tecnologia e Produção"
   },
   {
-    "stamp": "7/22/2020 19:57:09",
-    "email": "stephaniesouzaa95@hotmail.com.br",
-    "title": "EFEITO DO BIOCHAR DA CASCA DE EUCALIPTO ( EUCALIPTUS SPP) COMO CONTROLE DE MELOIDOGYNE SP",
-    "authors": "Souza, S.R.J  e Botelho, A.O",
-    "institution": "Instituto Federal do Sudeste de Minas Gerais- Campus Barbacena",
-    "summary": "O Biochar é um produto oriundo da carbonização de materiais vegetais e apresenta propriedades que permitem seu uso como condicionador de solo. Um dos produtos que podem ser utilizados para pirolise é a casca do eucalipto. Esta casca é um subproduto de fábricas que produzem pellets de eucalipto para caldeiras. Contudo, durante processo de resfriamento utiliza-se vapor d’ água gerando um volume grande de água residual que pode apresentar propriedades de controle de patógenos. Assim, o presente trabalho busca testar o efeito desta água sobre juvenis de segundo estádio (J2) de nematoides do gênero Meloidogyne sp. Para tanto, foram realizados ensaios in vitro submetendo os J2 ao efeito de diferentes concentrações desta água residual. O experimento foi conduzido em delineamento inteiramente ao acaso, com 5 tratamentos e 5 repetições. Os tratamentos consistiram em T1 – água de torneira (testemunha); T2 –25% de água residual do resfriamento do equipamento de pirólise da casca de eucalipto; T3 – 50% de água residual; T4 - 75% de água residual; T5 - 100% de água residual. A contagem de número de nematoides eclodidos na câmara de eclosão iniciou 24 horas a partir da montagem do ensaio e prosseguiu pelos 12 dias, até a aquisição de 2500 nematoides. A partir da análise de variância, os resultados indicaram que não houve diferença significativa entre os tratamentos.",
-    "modality": {
-      "modality": "Pesquisa",
-      "id": 2
-    },
-    "pdf": "https://drive.google.com/open?id=13BBU0R486gQ7q3SW-0VvUTwC0uCM1jbE",
-    "contract": "De acordo.",
-    "id": 52,
-    "category": "Ciências Agrárias e Ciências Ambientais"
-  },
-  {
     "stamp": "7/22/2020 20:09:56",
     "email": "pedroe06@hotmail.com",
     "title": "EFEITO DOS COMPOSTOS ORGÂNICOS VOLÁTEIS (COVS) EMITIDOS POR ÓLEOS ESSENCIAIS DE PLANTAS AROMÁTICAS SOBRE MELOIDOGYNE SPP.",
@@ -891,6 +875,22 @@
     "pdf": "https://drive.google.com/open?id=1qmcu6GyKjmFBK5xD3mCLE0D-Nrk7OGTM",
     "contract.": "De acordo.",
     "id": 55,
+    "category": "Ciências Sociais Aplicadas, Ciências Humanas"
+  },
+  {
+    "stamp": "7/24/2020 14:45:57",
+    "email": "stephaniesouzaa95@hotmail.com.br",
+    "title": "EFEITO DO BIOCHAR DA CASCA DE EUCALIPTO (EUCALYPTUS spp) COMO CONTROLE DE MELOIDOGYE sp",
+    "authors": "SOUZA, Stephanie Reina de Jesus¹; BOTELHO, Alex Oliveira²",
+    "institution": "Instituto Federal do Sudeste de Minas Gerais-Campus Barbacena",
+    "summary": "O Biochar é um produto oriundo da carbonização de materiais vegetais e apresenta propriedades que permitem seu uso como condicionador de solo. Um dos produtos que podem ser utilizados para pirolise é a casca do eucalipto. Esta casca é um subproduto de fábricas que produzem pellets de eucalipto para caldeiras. Contudo, durante processo de resfriamento utiliza-se vapor d’ água gerando um volume grande de água residual que pode apresentar propriedades de controle de patógenos. Assim, o presente trabalho busca testar o efeito desta água sobre juvenis de segundo estádio (J2) de nematoides do gênero Meloidogyne sp. Para tanto, foram realizados ensaios in vitro submetendo os J2 ao efeito de diferentes concentrações desta água residual. O experimento foi conduzido em delineamento inteiramente ao acaso, com 5 tratamentos e 5 repetições. Os tratamentos consistiram em T1 – água de torneira (testemunha); T2 –25% de água residual do resfriamento do equipamento de pirólise da casca de eucalipto; T3 – 50% de água residual; T4 - 75% de água residual; T5 - 100% de água residual. A contagem de número de nematoides eclodidos na câmara de eclosão iniciou 24 horas a partir da montagem do ensaio e prosseguiu pelos 12 dias, até a aquisição de 2500 nematoides. A partir da análise de variância, os resultados indicaram que não houve diferença significativa entre os tratamentos.",
+    "modality": {
+      "modality": "Pesquisa",
+      "id": 2
+    },
+    "pdf": "https://drive.google.com/open?id=1L-5l6LelBDzkpoeQdD6jVIFZTLzyDDlU",
+    "contract.": "De acordo.",
+    "id": 56,
     "category": "Ciências Sociais Aplicadas, Ciências Humanas"
   }
 ]
