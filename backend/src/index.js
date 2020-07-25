@@ -3,9 +3,11 @@ const requester = require('request');
 const projects = require('./respostas.json');
 const categories = require('./categories.json');
 const modalities = require('./modalities.json');
+const fs = require('fs');
 const cors = require('cors');
 const app = express();
 const path = require('path');
+const { ReadStream } = require('tty');
 
 app.use(express.static(path.join(__dirname, '../../build')));
 app.use(cors());
@@ -47,9 +49,23 @@ app.get('/api/project/:id', (request, response)=>{
 app.get('/api/project/:id/pdf', (request, response)=>{
   const { id } = request.params;
   
-  requester({
-    uri: 'https://drive.google.com/u/0/uc?id=' +  new URL(projects[id].pdf).searchParams.get('id') + '&export=download'
-  }).pipe(response);
+  if (!fs.existsSync('./pdf/')){
+    fs.mkdirSync('./pdf');
+  }
+
+  let googleDriveId = new URL(projects[id].pdf).searchParams.get('id');
+  let fileName = './pdf/' + googleDriveId + ".pdf";
+  
+  if (!fs.existsSync(fileName)) {
+    let file = fs.createWriteStream(fileName);
+
+    let resp = requester('https://drive.google.com/u/0/uc?id=' + googleDriveId + '&export=download');
+    resp.pipe(file);
+    resp.pipe(response);
+    fs.writeFileSync(fileName, file); 
+  }
+  else
+    fs.createReadStream(fileName).pipe(response);
 });
 
 /**
